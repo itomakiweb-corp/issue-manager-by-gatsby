@@ -31,6 +31,7 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
 
+    // https://www.gatsbyjs.org/packages/gatsby-source-graphql/
     {
       resolve: "gatsby-source-graphql",
       options: {

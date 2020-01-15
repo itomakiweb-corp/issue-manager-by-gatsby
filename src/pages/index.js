@@ -1,10 +1,10 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     <h2>New Issue</h2>
@@ -15,11 +15,32 @@ const IndexPage = () => (
         <li><button type="submit">create new issue</button></li>
       </ul>
     </form>
-    <h2>Issues</h2>
+    <h2>Issues (open)</h2>
     <ul>
-      <li>issue title</li>
+      {data.github.repository.issues.nodes.map((issue, i) => (
+        <li key={issue.id}>
+          <a href={issue.url} target="_blank">{i + 1}: {issue.title}</a>
+        </li>
+      ))}
     </ul>
   </Layout>
 )
+
+export const query = graphql`
+  query {
+    github {
+      repository(owner: "hidecharo", name: "issue-manager-by-gatsby") {
+        issues(first: 100, states: [OPEN], orderBy: { field: UPDATED_AT, direction: DESC }) {
+          nodes {
+            id
+            url
+            number
+            title
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
