@@ -3,6 +3,7 @@ module.exports = {
     title: `Issue Manager (Gatsby)`,
     description: `GitHub Issue Manager developed by Gatsby`,
     author: `@hidecharo`,
+    homepage: `https://twitter.com/hidecharo`,
   },
 
   plugins: [
@@ -38,11 +39,11 @@ module.exports = {
     // https://www.gatsbyjs.org/packages/gatsby-source-graphql/
     // https://github.com/gatsbyjs/gatsby/tree/master/examples/using-gatsby-source-graphql
     {
-      resolve: "gatsby-source-graphql",
+      resolve: `gatsby-source-graphql`,
       options: {
-        typeName: "GitHub",
-        fieldName: "github",
-        url: "https://api.github.com/graphql",
+        typeName: `GitHub`,
+        fieldName: `github`,
+        url: `https://api.github.com/graphql`,
         // HTTP headers
         headers: {
           // https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/

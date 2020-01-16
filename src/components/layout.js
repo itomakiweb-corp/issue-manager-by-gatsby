@@ -12,12 +12,15 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
+/* eslint react/jsx-no-target-blank: ["error", { "allowReferrer": true }] */
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {
           title
+          author
+          homepage
         }
       }
     }
@@ -36,9 +39,11 @@ const Layout = ({ children }) => {
       >
         <main>{children}</main>
         <footer>
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}
           {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <a href={data.site.siteMetadata.homepage} target="_blank" rel="noopener">
+            {data.site.siteMetadata.author}
+          </a>
         </footer>
       </div>
     </>
